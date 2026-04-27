@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Merriweather, Roboto } from "next/font/google";
 import "./globals.css";
 import "./base.css";
 import "./new-font.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Merriweather } from "next/font/google";
-import { Roboto } from "next/font/google";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -43,7 +41,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} ${roboto.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Header />

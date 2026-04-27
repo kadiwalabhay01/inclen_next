@@ -39,6 +39,7 @@ interface PresenceSectionProps {
 export default function PresenceSection() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("networks");
   const [mapReady, setMapReady] = useState(false);
+  const [leafletLoaded, setLeafletLoaded] = useState(false);
 
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletRef = useRef<L.Map | null>(null);
@@ -48,9 +49,9 @@ export default function PresenceSection() {
     institutions: null,
   });
 
-  // ── Load Leaflet (client-only) and initialise the map once ─────────────────
+  // ── Load Leaflet (client-only) ─────────────────
   useEffect(() => {
-    if (!mapRef.current || mapReady) return;
+    if (!mapRef.current || leafletLoaded) return;
 
     // Dynamically import Leaflet so SSR never touches it
     import("leaflet").then((leafletModule) => {
@@ -111,8 +112,25 @@ export default function PresenceSection() {
         document.head.appendChild(style);
       }
 
-      // ── Initialise map ────────────────────────────────────────────────────
-      const map = L.map("inclen-map", {
+      setLeafletLoaded(true);
+    });
+
+    // Cleanup
+    return () => {
+      if (leafletRef.current) {
+        leafletRef.current.remove();
+        leafletRef.current = null;
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // ── Initialise map once Leaflet is loaded ─────────────────
+  useEffect(() => {
+    if (!leafletLoaded || !mapRef.current || leafletRef.current) return;
+
+    import("leaflet").then((L) => {
+      const map = L.map(mapRef.current!, {
         center: [20, 0],
         zoom: 2,
         minZoom: 2,
@@ -169,15 +187,12 @@ export default function PresenceSection() {
       setMapReady(true);
     });
 
-    // Cleanup
     return () => {
-      if (leafletRef.current) {
-        leafletRef.current.remove();
-        leafletRef.current = null;
-      }
+      leafletRef.current?.remove();
+      leafletRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [leafletLoaded]);
 
   // ── Swap active layer whenever filter changes ──────────────────────────────
   useEffect(() => {
@@ -212,7 +227,7 @@ export default function PresenceSection() {
   return (
     <section
       id="presence"
-      className="py-24 bg-white scroll-mt-20"
+      className="py-20 bg-white scroll-mt-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ── Header ── */}
@@ -276,8 +291,8 @@ export default function PresenceSection() {
                   key={key}
                   onClick={() => handleFilter(key)}
                   className={`map-control-btn relative z-10 px-2 md:px-5 py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 min-w-[85px] md:min-w-[130px] text-center cursor-pointer ${activeFilter === key
-                      ? "text-white"
-                      : "text-slate-500 hover:text-orange-600"
+                    ? "text-white"
+                    : "text-slate-500 hover:text-orange-600"
                     }`}
                 >
                   {label}

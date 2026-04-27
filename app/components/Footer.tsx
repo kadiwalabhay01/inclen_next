@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
             <h4 className="font-bold text-white mb-6 uppercase text-xs tracking-widest">Explore</h4>
             <ul className="space-y-3 text-sm text-slate-400">
               <li>
-                <Link href="/about" className="hover:text-[#F7610C] transition-colors">
+                <Link href="/about#what-we-do" className="hover:text-[#F7610C] transition-colors">
                   Our Mission
                 </Link>
               </li>
