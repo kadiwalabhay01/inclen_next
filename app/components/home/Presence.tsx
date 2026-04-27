@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type L from "leaflet";
 import countriesData from "@/data/countries.json";
 import networksData from "@/data/networks.json";
 import institutionsData from "@/data/institutions.json";
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 type FilterType = "networks" | "countries" | "institutions";
 
@@ -11,6 +13,12 @@ interface MapPoint {
   lat: number;
   lng: number;
   name: string;
+}
+
+interface LayersMap {
+  networks: L.LayerGroup | null;
+  countries: L.LayerGroup | null;
+  institutions: L.LayerGroup | null;
 }
 
 // ─── Pill position helper ─────────────────────────────────────────────────────
@@ -33,11 +41,8 @@ export default function PresenceSection() {
   const [mapReady, setMapReady] = useState(false);
 
   const mapRef = useRef<HTMLDivElement>(null);
-  // We store the Leaflet map instance + layer groups in refs so they survive re-renders.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const leafletRef = useRef<any>(null);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const layersRef = useRef<{ networks: any; countries: any; institutions: any }>({
+  const leafletRef = useRef<L.Map | null>(null);
+  const layersRef = useRef<LayersMap>({
     networks: null,
     countries: null,
     institutions: null,
@@ -48,7 +53,9 @@ export default function PresenceSection() {
     if (!mapRef.current || mapReady) return;
 
     // Dynamically import Leaflet so SSR never touches it
-    import("leaflet").then((L) => {
+    import("leaflet").then((leafletModule) => {
+      const L = leafletModule.default || leafletModule;
+
       // Leaflet CSS — inject once
       if (!document.getElementById("leaflet-css")) {
         const link = document.createElement("link");
@@ -137,7 +144,7 @@ export default function PresenceSection() {
       const tooltipClass =
         "px-2 py-1 bg-black/80 text-white text-[10px] font-bold uppercase tracking-wider rounded border-none shadow-xl";
 
-      const makeLayer = (points: MapPoint[]) =>
+      const makeLayer = (points: MapPoint[]): L.LayerGroup =>
         L.layerGroup(
           points.map((p) =>
             L.marker([p.lat, p.lng], { icon: makeIcon() }).bindTooltip(
@@ -153,8 +160,12 @@ export default function PresenceSection() {
         institutions: makeLayer(institutionsData),
       };
 
-      // Add default layer
-      layersRef.current.networks.addTo(map);
+      // Add default layer with proper null check
+      const networksLayer = layersRef.current.networks;
+      if (networksLayer) {
+        networksLayer.addTo(map);
+      }
+
       setMapReady(true);
     });
 
@@ -265,8 +276,8 @@ export default function PresenceSection() {
                   key={key}
                   onClick={() => handleFilter(key)}
                   className={`map-control-btn relative z-10 px-2 md:px-5 py-2 text-[10px] md:text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 min-w-[85px] md:min-w-[130px] text-center cursor-pointer ${activeFilter === key
-                    ? "text-white"
-                    : "text-slate-500 hover:text-orange-600"
+                      ? "text-white"
+                      : "text-slate-500 hover:text-orange-600"
                     }`}
                 >
                   {label}
@@ -283,13 +294,16 @@ export default function PresenceSection() {
 // ─── Utility: parse "left: X; width: Y" into React inline style ──────────────
 function parsePillStyle(styleStr: string): React.CSSProperties {
   return Object.fromEntries(
-    styleStr.split(";")
+    styleStr
+      .split(";")
       .map((s) => s.trim())
       .filter(Boolean)
       .map((s) => {
         const [prop, val] = s.split(":").map((x) => x.trim());
         // Convert CSS property to camelCase (e.g. "left" → "left")
-        const camel = prop.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase());
+        const camel = prop.replace(/-([a-z])/g, (_, c: string) =>
+          c.toUpperCase()
+        );
         return [camel, val];
       })
   ) as React.CSSProperties;
