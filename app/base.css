@@ -1,0 +1,57 @@
+:root {
+  --primary: #F7610C;
+  --secondary: #032d4c;
+  --color: #4B5563;
+  --color2: #6B7280;
+  --heading: #00223A
+  --dark: #f7f3ea;
+  --light: #f3f3f3;
+  --button: #b44446;
+}
+.text-primary {
+  color: var(--primary);
+}
+.text-secondary {
+  color: var(--secondary);
+}
+.text-color {
+  color: var(--color);
+}
+.text-color2 {
+  color: var(--color2);
+}
+.text-heading {
+  color: var(--heading);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.bg-secondary {
+  background-color: var(--secondary);
+}
+.bg-dark {
+  background-color: var(--dark);
+}
+.bg-light {
+  background-color: var(--light);
+}
+
+body {
+  font-family: "poppins";
+}
+
+.font-akaya {
+  font-family: "Akaya Kanadaka", cursive;
+}
+
+.font-vidaloka {
+  font-family: "Vidaloka", serif;
+}
+
+.font-merri {
+  font-family: "Merriweather", serif;
+}
+
+.font-roboto {
+font-family: "Roboto", sans-serif;
+}

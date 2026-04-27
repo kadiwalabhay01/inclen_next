@@ -1,0 +1,182 @@
+[
+    {
+        "name": "Johns Hopkins University",
+        "location": "USA",
+        "lat": 39.3299,
+        "lng": -76.6205
+    },
+    {
+        "name": "McMaster University",
+        "location": "Canada",
+        "lat": 43.2612,
+        "lng": -79.9192
+    },
+    {
+        "name": "McGill University",
+        "location": "Canada",
+        "lat": 45.5048,
+        "lng": -73.5772
+    },
+    {
+        "name": "Boston University",
+        "location": "USA",
+        "lat": 42.3601,
+        "lng": -71.0589
+    },
+    {
+        "name": "University of Tromsø",
+        "location": "Norway",
+        "lat": 69.6492,
+        "lng": 18.9553
+    },
+    {
+        "name": "AIIMS New Delhi",
+        "location": "India",
+        "lat": 28.5672,
+        "lng": 77.2100
+    },
+    {
+        "name": "PHFI New Delhi",
+        "location": "India",
+        "lat": 28.5244,
+        "lng": 77.1855
+    },
+    {
+        "name": "KGMU Lucknow",
+        "location": "India",
+        "lat": 26.8669,
+        "lng": 80.9160
+    },
+    {
+        "name": "Jamia Hamdard",
+        "location": "India",
+        "lat": 28.5132,
+        "lng": 77.2495
+    },
+    {
+        "name": "IGNOU",
+        "location": "India",
+        "lat": 28.4975,
+        "lng": 77.1685
+    },
+    {
+        "name": "IIIT Delhi",
+        "location": "India",
+        "lat": 28.5459,
+        "lng": 77.2732
+    },
+    {
+        "name": "University of Nairobi",
+        "location": "Kenya",
+        "lat": -1.2921,
+        "lng": 36.8219
+    },
+    {
+        "name": "Makerere University",
+        "location": "Uganda",
+        "lat": 0.3340,
+        "lng": 32.5696
+    },
+    {
+        "name": "University of Ibadan",
+        "location": "Nigeria",
+        "lat": 7.4443,
+        "lng": 3.8995
+    },
+    {
+        "name": "University of Cape Town",
+        "location": "South Africa",
+        "lat": -33.9577,
+        "lng": 18.4612
+    },
+    {
+        "name": "University of São Paulo",
+        "location": "Brazil",
+        "lat": -23.5505,
+        "lng": -46.6333
+    },
+    {
+        "name": "Pontificia Universidad Católica",
+        "location": "Chile",
+        "lat": -33.4411,
+        "lng": -70.6405
+    },
+    {
+        "name": "Universidad Peruana Cayetano Heredia",
+        "location": "Peru",
+        "lat": -12.0298,
+        "lng": -77.0592
+    },
+    {
+        "name": "Chulalongkorn University",
+        "location": "Thailand",
+        "lat": 13.7367,
+        "lng": 100.5231
+    },
+    {
+        "name": "University of Indonesia",
+        "location": "Indonesia",
+        "lat": -6.3654,
+        "lng": 106.8327
+    },
+    {
+        "name": "University of Manila",
+        "location": "Philippines",
+        "lat": 14.5910,
+        "lng": 120.9850
+    },
+    {
+        "name": "Aga Khan University",
+        "location": "Pakistan",
+        "lat": 24.8918,
+        "lng": 67.0653
+    },
+    {
+        "name": "Fudan University",
+        "location": "China",
+        "lat": 31.2989,
+        "lng": 121.5039
+    },
+    {
+        "name": "University of Sydney",
+        "location": "Australia",
+        "lat": -33.8886,
+        "lng": 151.1873
+    },
+    {
+        "name": "University of Auckland",
+        "location": "New Zealand",
+        "lat": -36.8509,
+        "lng": 174.7645
+    },
+    {
+        "name": "London School of Hygiene & Tropical Medicine",
+        "location": "UK",
+        "lat": 51.5207,
+        "lng": -0.1301
+    },
+    {
+        "name": "Heidelberg University",
+        "location": "Germany",
+        "lat": 49.4124,
+        "lng": 8.7064
+    },
+    {
+        "name": "Karolinska Institute",
+        "location": "Sweden",
+        "lat": 59.3498,
+        "lng": 18.0264
+    },
+    {
+        "name": "University of Amsterdam",
+        "location": "Netherlands",
+        "lat": 52.3558,
+        "lng": 4.9555
+    },
+    {
+        "name": "University of Geneva",
+        "location": "Switzerland",
+        "lat": 46.1984,
+        "lng": 6.1423
+    }
+]
