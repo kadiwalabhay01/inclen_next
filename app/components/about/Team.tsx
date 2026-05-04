@@ -266,7 +266,7 @@ function MemberCard({
         <button
           onClick={(e) => { e.stopPropagation(); onClick(member); }}
           className="absolute top-3 right-3
-                     w-8 h-8 rounded-full bg-white/80 hover:bg-white
+                     w-8 h-8 rounded-full bg-white/80 hover:bg-white 
                      flex items-center justify-center
                      text-accent-500 text-xl leading-none
                      opacity-0 translate-y-2
@@ -334,7 +334,7 @@ function MemberModal({
         {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20
+          className="absolute top-4 right-4 z-20 
                      w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200
                      flex items-center justify-center text-slate-500 hover:text-slate-800
                      transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
@@ -467,7 +467,7 @@ export default function Team() {
           <div
             role="tablist"
             aria-label="Team categories"
-            className="flex items-center gap-1 bg-slate-100 border border-slate-200
+            className="flex items-center gap-1 bg-slate-100 border border-slate-200 
                        rounded-full p-1 sm:p-1.5 overflow-x-auto max-w-full
                        [scrollbar-width:none] [-ms-overflow-style:none]
                        [&::-webkit-scrollbar]:hidden font-roboto"
@@ -481,7 +481,7 @@ export default function Team() {
                 id={`tab-${tab.key}`}
                 onClick={() => setActiveTab(tab.key)}
                 className={[
-                  'whitespace-nowrap px-3 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full',
+                  'whitespace-nowrap px-3 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full cursor-pointer',
                   'text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest',
                   'transition-all duration-200 focus:outline-none',
                   'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-1',

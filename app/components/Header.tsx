@@ -53,7 +53,7 @@ const NAV_ITEMS = [
         heading: 'Focus Areas',
         links: [
           { label: 'Area of Work',           href: '#',                   desc: 'Explore our key focus areas and strategic impact domains.' },
-          { label: 'Research Projects',      href: '/research',           desc: 'Cutting-edge health research, synthesis and analysis.' },
+          { label: 'Research Projects',      href: '#',           desc: 'Cutting-edge health research, synthesis and analysis.' },
         ],
       },
       {
@@ -67,7 +67,7 @@ const NAV_ITEMS = [
         heading: 'Outreach',
         links: [
           { label: 'Engagement & Advocacy',  href: '/engagement-advocacy', desc: 'Policy advocacy and multi-stakeholder engagement.' },
-          { label: 'Community Activities',   href: '#',                    desc: 'Community activities and engagement.' },
+          { label: 'Community Activities',   href: '/community-activities', desc: 'Community activities and engagement.' },
         ],
       },
     ],
@@ -364,7 +364,7 @@ function DropdownContent({ item }: { item: NavItem }) {
   );
 }
 
-function PromoCard({ promo }: { promo: NonNullable<(typeof NAV_ITEMS[0] & { promo?: any })['promo']> }) {
+function PromoCard({ promo }: { promo: NonNullable<(typeof NAV_ITEMS[0] & { promo?: unknown })['promo']> }) {
   const isBrand = promo.variant === 'brand';
 
   return (
@@ -422,7 +422,7 @@ function PromoCard({ promo }: { promo: NonNullable<(typeof NAV_ITEMS[0] & { prom
 // IMAGE CARD — full image with text overlay at the bottom
 // Used in: Resources
 // ================================================================
-function ImageCard({ card }: { card: NonNullable<(typeof NAV_ITEMS[0] & { imageCard?: any })['imageCard']> }) {
+function ImageCard({ card }: { card: NonNullable<(typeof NAV_ITEMS[0] & { imageCard?: unknown })['imageCard']> }) {
   return (
     <div className="relative rounded-xl overflow-hidden h-full min-h-[140px] group">
       <img

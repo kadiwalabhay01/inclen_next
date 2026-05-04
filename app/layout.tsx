@@ -43,7 +43,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} ${roboto.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className={`${roboto.className} font-sans min-h-full flex flex-col`}>
         <Header />
         {children}
         <Footer />
