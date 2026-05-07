@@ -78,7 +78,7 @@ export default function HeroSection() {
                         <img
                             key={index}
                             src={`/images/home/${slide}`}
-                            className="w-full h-full object-cover flex-shrink-0"
+                            className="w-full h-full object-cover shrink-0"
                             alt="Hero"
                         />
                     ))}

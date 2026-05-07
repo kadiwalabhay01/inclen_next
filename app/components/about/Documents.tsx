@@ -137,7 +137,7 @@ function DocumentCard({ doc }: { doc: Document }) {
       <div className="flex items-start gap-4 mb-auto">
         <div
           className={[
-            'p-3 rounded-xl shadow-inner transition-colors duration-300 flex-shrink-0',
+            'p-3 rounded-xl shadow-inner transition-colors duration-300 shrink-0',
             iconColor.bg,
             iconColor.text,
             iconColor.hoverBg,

@@ -39,7 +39,7 @@ const NAV_ITEMS = [
       description: 'Learn how INCLEN is working with global health stakeholders to drive meaningful change.',
       href:        '/about',
       ctaLabel:    'Read More',               // leave empty '' to hide button
-      image:       'images/team_collaboration.png',
+      image:       '/images/team_collaboration.png',
       imageAlt:    'Team collaboration',
     },
   },
@@ -53,7 +53,7 @@ const NAV_ITEMS = [
         heading: 'Focus Areas',
         links: [
           { label: 'Area of Work',           href: '#',                   desc: 'Explore our key focus areas and strategic impact domains.' },
-          { label: 'Research Projects',      href: '#',           desc: 'Cutting-edge health research, synthesis and analysis.' },
+          { label: 'Research Projects',      href: '/research',           desc: 'Cutting-edge health research, synthesis and analysis.' },
         ],
       },
       {
@@ -124,7 +124,7 @@ const NAV_ITEMS = [
     ],
     // Wide image banner (spans 3 columns next to the links column)
     heroBanner: {
-      image:       'images/hero_village_data.png',
+      image:       '/images/hero_village_data.png',
       title:       'Shape the Future of Health',
       description: 'Join a team of dedicated professionals working towards global health equity.',
       ctaLabel:    'View All Openings',
@@ -200,7 +200,7 @@ const NAV_ITEMS = [
     ],
     // Full image card on the right (no button, just image + text overlay)
     imageCard: {
-      image:       'images/publication_hero.jpg',
+      image:       '/images/publication_hero.jpg',
       title:       'Knowledge Hub',
       description: 'Access our extensive library of research and resources.',
     },
@@ -219,7 +219,7 @@ type NavItem = typeof NAV_ITEMS[0];
 function Chevron({ open }: { open: boolean }) {
   return (
     <svg
-      className="w-3.5 h-3.5 ml-1 flex-shrink-0 transition-transform duration-200"
+      className="w-3.5 h-3.5 ml-1 shrink-0 transition-transform duration-200"
       style={{ transform: open ? 'rotate(180deg)' : 'rotate(0)' }}
       fill="none" stroke="currentColor" viewBox="0 0 24 24"
     >
@@ -406,7 +406,7 @@ function PromoCard({ promo }: { promo: NonNullable<(typeof NAV_ITEMS[0] & { prom
       </div>
 
       {/* Image side */}
-      <div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+      <div className="w-24 h-24 shrink-0 rounded-lg overflow-hidden">
         <img
           src={promo.image}
           alt={promo.imageAlt || ''}

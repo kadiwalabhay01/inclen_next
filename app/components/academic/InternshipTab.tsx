@@ -28,7 +28,7 @@ const InternshipTab = () => {
 
           {/* Track 1 */}
           <div className="flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center flex-shrink-0 text-brand-600 font-bold">
+            <div className="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center shrink-0 text-brand-600 font-bold">
               1
             </div>
             <div>
@@ -43,7 +43,7 @@ const InternshipTab = () => {
 
           {/* Track 2 */}
           <div className="flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center flex-shrink-0 text-brand-600 font-bold">
+            <div className="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center shrink-0 text-brand-600 font-bold">
               2
             </div>
             <div>

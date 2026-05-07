@@ -20,176 +20,55 @@ interface Tab {
   label: string;
 }
 
-// ─── Static Data ──────────────────────────────────────────────────────────────
+interface TeamData {
+  tabs: Tab[];
+  members: Record<TabKey, TeamMember[]>;
+}
 
-const TABS: Tab[] = [
-  { key: 'board', label: 'Board of Trustees' },
-  { key: 'leadership', label: 'Leadership & Management' },
-  { key: 'research', label: 'Research & Implementation' },
-  { key: 'ethics', label: 'Ethics Committee' },
-  { key: 'scientific', label: 'Scientific Advisory Group' },
-];
+// ─── Data Source ──────────────────────────────────────────────────────────────
+//
+//  ✅ NOW  → fetches from public/data/team-data.json (static file)
+//  🔜 FUTURE → just swap this one line to your API URL:
+//              const DATA_URL = 'https://your-api.com/api/team';
+//              The rest of the component stays exactly the same.
+//
+const DATA_URL = '/data/team-data.json';
 
-const TEAM_DATA: Record<TabKey, TeamMember[]> = {
-  board: [
-    {
-      name: 'Dr. Virander Singh Chauhan',
-      role: 'Chairperson',
-      designation: 'Emeritus Scientist, ICGEB & EC Chairman, NAAC',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Dr. Virander Singh Chauhan is a distinguished scientist serving as the Chairperson. He is an Emeritus Scientist at ICGEB, New Delhi, and EC Chairman of NAAC. He previously served as Chairman of the University Grants Commission (UGC) and Director of ICGEB. A Padma Shri awardee, his work focuses on vaccine development (Malaria), biological standards, and higher education reform. Qualification: PhD (Chemistry), Postdoc Fellow, Rhodes Scholar.',
-    },
-    {
-      name: 'Dr. K. Srinath Reddy',
-      role: 'Member',
-      designation: 'Honorary Distinguished Professor, PHFI',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Dr. K. Srinath Reddy is a Padma Bhushan awardee and Honorary Distinguished Professor at the Public Health Foundation of India (PHFI). Formerly the President of PHFI and Head of Cardiology at AIIMS, he has also served as an Adjunct Professor at Harvard and Emory. He has chaired major health expert groups, including the High Level Expert Group on UHC. Specialisation: Non-communicable diseases and health policy. Qualification: MBBS, MD, MSc.',
-    },
-    {
-      name: 'Mr. C. N. Raghupathi',
-      role: 'Member',
-      designation: 'Head, India Business, Infosys',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Mr. C. N. Raghupathi leads the India Business for Infosys. He is a member of the Standards Committee at the Bureau of Industrial Standards and a visiting faculty at various universities. He has made significant program and policy contributions through government committees on Energy & Sustainability. Specialisation: Information and Technology EPC, Energy & Utilities, and manufacturing. Qualification: BE, MSc.',
-    },
-    {
-      name: 'Dr. Sanjay Madhav Mehendale',
-      role: 'Member',
-      designation: 'Director Research, Hinduja Hospital & Research',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Dr. Sanjay Madhav Mehendale is the Director of Research at Hinduja Hospital, Mumbai. His career includes roles as Additional Director General at ICMR and Director of the ICMR-National Institute of Epidemiology. He advises several government bodies, contributing to infectious disease epidemiology, HIV/AIDS research, and health systems. Specialisation: Infectious diseases, HIV/AIDS, and medical informatics. Qualification: MBBS, MD, MPH.',
-    },
-    {
-      name: 'Dr. Anurag Agrawal',
-      role: 'Member',
-      designation: 'Dean, BioSciences and Health Research, Ashoka University',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Dr. Anurag Agrawal is the Dean of BioSciences and Health Research at Ashoka University. Formerly the Director of CSIR-IGIB, he is a leading expert in pulmonology and public health informatics. His research focuses on the pathobiological genesis of lung diseases and using AI and digital data for universal health coverage. Qualification: MBBS, MD, PhD.',
-    },
-    {
-      name: 'Mr. Anil Wadhwa',
-      role: 'Member',
-      designation: 'Former Indian Ambassador & Secretary, MEA',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Mr. Anil Wadhwa is a distinguished former Indian diplomat and Secretary at the Ministry of External Affairs. He served as the Indian Ambassador to Italy, Thailand, Oman, and Poland, and represented India at numerous international summits. He leads the CII task force on Economic Strategy for the Indian government. Specialisation: Diplomacy and External Affairs. Qualification: MA.',
-    },
-  ],
-  leadership: [
-    {
-      name: 'Dr. N.K. Arora',
-      role: 'Executive Director',
-      designation: "Steering INCLEN's global vision",
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: "Dr. N.K. Arora is the Executive Director of INCLEN. A renowned leader in public health policy and implementation research, he steers the organization's global vision and strategic initiatives.",
-    },
-    {
-      name: 'Dr. Manoj Kumar Das',
-      role: 'Director (Projects)',
-      designation: 'Leading large-scale clinical projects',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Dr. Manoj Kumar Das directs projects at INCLEN, leading large-scale clinical projects and fostering research excellence across the network. His expertise lies in clinical trials and public health interventions.',
-    },
-    {
-      name: 'Amit Juneja',
-      role: 'Finance & Administration',
-      designation: 'Finance Lead',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Amit Juneja leads the Finance and Administration department, ensuring robust financial management and operational efficiency for the organization.',
-    },
-    {
-      name: 'Gaurav Bansal',
-      role: 'Info. Technology (IT)',
-      designation: 'IT Lead',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Gaurav Bansal heads the Information Technology division, overseeing digital infrastructure, data security, and IT support systems.',
-    },
-    {
-      name: 'Sunita Joti',
-      role: 'Project Manager',
-      designation: 'Project Management',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Sunita Joti serves as Project Manager, coordinating various research projects and ensuring timely delivery of milestones and objectives.',
-    },
-  ],
-  research: [],
-  ethics: [
-    {
-      name: 'Dr. Kusum Verma',
-      role: 'Chairperson',
-      designation: 'Basic Scientist/Medical Ethics Expert',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Sr. Consultant & Chairperson, Department of Cytopathology, Sir GangaRam Hospital, Old Rajinder Nagar, New Delhi. Email: kusumv1943@gmail.com',
-    },
-    {
-      name: 'Dr. Jenifer Lobo',
-      role: 'Member',
-      designation: 'Clinician, Public Health Specialist',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Retired, Ex-Medical superintendent, Holy Family Hospital, Okhla Main Road, Jamia nagar, Delhi-110025. Email: drloboj@gmail.com',
-    },
-    {
-      name: 'Dr. Nalin Mehta',
-      role: 'Member',
-      designation: 'Basic Scientist/Biomedical Ethics Expert',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Professor, Department of Physiology, All India Institute of Medical Sciences, Ansari Nagar, New Delhi-110029. Email: nalinaiims.mehta@gmail.com',
-    },
-    {
-      name: 'Dr. Roli Mathur',
-      role: 'Member',
-      designation: 'Basic Scientist/Biomedical Ethics Expert',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Scientist E & Head, ICMR Bioethics Unit, National Center for Disease Informatics and Research, Nirmal Bhawan, Kannamangala, Bangalore-562 110. Email: rolimath@gmail.com',
-    },
-    {
-      name: 'Dr. Naresh Gupta',
-      role: 'Member',
-      designation: 'Alternate Chairperson, Clinician',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Medical Consultant and Advisor for Hemophilia, Maulana Azad Medical College & LNJP Hospital, New Delhi-110002. Email: doctornaresh@gmail.com',
-    },
-  ],
-  scientific: [
-    {
-      name: 'Dr Renu Swarup',
-      role: 'External Member',
-      designation: 'Former Secretary to Government of India',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Department of Biotechnology, Ministry of Science & Technology, Government of India. Address: CGO Complex, Lodhi Road, New Delhi - 110 003.',
-    },
-    {
-      name: 'Prof. Naveet Wig',
-      role: 'External Member',
-      designation: 'Professor & Head, AIIMS',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'AIIMS, Ansari Nagar, New Delhi 110029 INDIA',
-    },
-    {
-      name: 'Dr. R.M. Pandey',
-      role: 'External Member',
-      designation: 'Prof. in Charge, AIIMS',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'AIIMS, Ansari Nagar, New Delhi 110029 INDIA',
-    },
-    {
-      name: 'Dr. Tavpritesh Sethi',
-      role: 'External Member',
-      designation: 'Associate Professor',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Institute of Information Technology, Okhla Industrial Estate, Phase-III, New Delhi - 110 020',
-    },
-    {
-      name: 'Prof. Prashant Mathur',
-      role: 'External Member',
-      designation: 'Director, ICMR',
-      image: '/images/member/dr_naresh_gupta.png',
-      bio: 'Indian Council of Medical Research, Nirmal Bhawan-ICMR Complex (II Floor), Poojanahalli, Bengaluru – 562 110',
-    },
-  ],
-};
+// ─── Custom Hook: useTeamData ─────────────────────────────────────────────────
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+function useTeamData() {
+  const [data, setData] = useState<TeamData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const res = await fetch(DATA_URL);
+        if (!res.ok) throw new Error(`Failed to fetch team data (${res.status})`);
+
+        const json: TeamData = await res.json();
+        if (!cancelled) setData(json);
+      } catch (err) {
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    load();
+    return () => { cancelled = true; };
+  }, []);
+
+  return { data, loading, error };
+}
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function getInitials(name: string): string {
   return name
@@ -198,6 +77,46 @@ function getInitials(name: string): string {
     .slice(0, 2)
     .map((w) => w[0].toUpperCase())
     .join('');
+}
+
+// ─── Loading Skeleton ─────────────────────────────────────────────────────────
+
+function CardSkeleton() {
+  return (
+    <div className="rounded-2xl bg-slate-100 overflow-hidden animate-pulse">
+      <div className="w-full aspect-[3/4] bg-slate-200" />
+    </div>
+  );
+}
+
+function GridSkeleton() {
+  return (
+    <div className="grid gap-4 sm:gap-5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
+      {Array.from({ length: 4 }).map((_, i) => <CardSkeleton key={i} />)}
+    </div>
+  );
+}
+
+// ─── Error State ──────────────────────────────────────────────────────────────
+
+function ErrorState({ message }: { message: string }) {
+  return (
+    <div className="py-20 text-center">
+      <div className="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-5">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-red-400">
+          <path strokeLinecap="round" strokeLinejoin="round"
+            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71
+               c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898
+               0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+        </svg>
+      </div>
+      <h3 className="font-serif text-xl font-bold text-slate-900 mb-2">
+        Could not load team data
+      </h3>
+      <p className="text-slate-500 text-sm max-w-sm mx-auto">{message}</p>
+    </div>
+  );
 }
 
 // ─── MemberCard ───────────────────────────────────────────────────────────────
@@ -211,15 +130,13 @@ function MemberCard({
 }) {
   return (
     <article
-      className="group relative overflow-hidden rounded-2xl bg-slate-100 cursor-pointer
+      className="group relative overflow-hidden rounded-2xl bg-slate-100
                  transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl"
-      onClick={() => onClick(member)}
       role="button"
       tabIndex={0}
       aria-label={`View biography of ${member.name}`}
       onKeyDown={(e) => e.key === 'Enter' && onClick(member)}
     >
-      {/* Image — 3:4 aspect ratio */}
       <div className="relative w-full aspect-[3/4] overflow-hidden bg-slate-200">
         {member.image ? (
           <Image
@@ -237,10 +154,8 @@ function MemberCard({
           </div>
         )}
 
-        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/95 via-slate-900/40 to-transparent" />
 
-        {/* Info over image */}
         <div className="absolute inset-x-0 bottom-0 p-4">
           <h3 className="font-serif text-18 font-bold text-white leading-tight">
             {member.name}
@@ -248,27 +163,23 @@ function MemberCard({
           <p className="mt-1 text-10 font-bold font-roboto uppercase tracking-widest text-accent-500">
             {member.role}
           </p>
-          {/* Slides in on hover — desktop only */}
           <p className="mt-1 text-11 text-slate-300 leading-snug
-                        hidden sm:block
-                        max-h-0 overflow-hidden opacity-0
+                        hidden sm:block max-h-0 overflow-hidden opacity-0
                         transition-all duration-300
                         group-hover:max-h-16 group-hover:opacity-100 font-roboto">
             {member.designation}
           </p>
-          {/* Always visible on mobile */}
           <p className="mt-1 text-11 text-slate-300 leading-snug sm:hidden font-roboto">
             {member.designation}
           </p>
         </div>
 
-        {/* Plus button */}
         <button
           onClick={(e) => { e.stopPropagation(); onClick(member); }}
-          className="absolute top-3 right-3
-                     w-8 h-8 rounded-full bg-white/80 hover:bg-white 
+          className="absolute bottom-6 right-3 cursor-pointer
+                     w-8 h-8 rounded-full bg-white/20 hover:bg-white
                      flex items-center justify-center
-                     text-accent-500 text-xl leading-none
+                     text-white hover:text-brand-900 text-xl leading-none
                      opacity-0 translate-y-2
                      group-hover:opacity-100 group-hover:translate-y-0
                      transition-all duration-300 shadow-md
@@ -317,39 +228,33 @@ function MemberModal({
       aria-modal="true"
       aria-labelledby="modal-member-name"
     >
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-slate-900/75 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Panel */}
       <div
         ref={dialogRef}
         tabIndex={-1}
-        className="relative z-10 w-full max-w-3xl max-h-[90vh] overflow-y-auto
-                   bg-white rounded-2xl shadow-2xl outline-none"
-      >
-        {/* Close */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-20 
-                     w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200
-                     flex items-center justify-center text-slate-500 hover:text-slate-800
-                     transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
-          aria-label="Close modal"
-        >
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
+        className="relative z-10 w-full max-w-4xl max-h-[90vh] overflow-y-auto
+                   bg-white rounded-2xl shadow-2xl outline-none">
 
-        {/* Body */}
+        <div className="absolute right-0 top-0 hidden pr-4 pt-4 sm:block z-10">
+          <button
+            onClick={onClose}
+            className="rounded-full bg-white text-slate-400 hover:text-brand-600 cursor-pointer"
+            aria-label="Close modal"   >
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-6 p-6 sm:p-8">
-          {/* Photo */}
-          <div className="flex-shrink-0 self-center sm:self-start
-                          w-36 sm:w-44 rounded-xl overflow-hidden
+          <div className="shrink-0 self-center sm:self-start
+                          w-48 sm:w-1/3 rounded-xl overflow-hidden
                           aspect-[3/4] relative bg-slate-200 shadow-lg">
             {member.image ? (
               <Image
@@ -368,19 +273,18 @@ function MemberModal({
             )}
           </div>
 
-          {/* Content */}
           <div className="flex-1 min-w-0">
-            <span className="inline-block px-3 py-1 rounded-full bg-emerald-50 text-accent-500
+            <span className="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700
                              text-[10px] font-bold uppercase tracking-widest mb-4 font-roboto">
               {member.role}
             </span>
             <h2
               id="modal-member-name"
-              className=" font-roboto text-2xl sm:text-3xl font-bold text-slate-900 leading-tight mb-1"
+              className="font-roboto text-2xl sm:text-3xl font-bold text-slate-900 leading-tight mb-1"
             >
               {member.name}
             </h2>
-            <p className="text-xs font-bold uppercase tracking-wider text-accent-500 mb-6 font-roboto">
+            <p className="text-xs md:text-sm font-bold text-accent-500 uppercase tracking-wider mb-6">
               {member.designation}
             </p>
             <hr className="border-slate-200 mb-5" />
@@ -390,14 +294,10 @@ function MemberModal({
           </div>
         </div>
 
-        {/* Footer */}
         <div className="border-t border-slate-100 bg-slate-50 px-6 py-4 flex justify-end rounded-b-2xl">
           <button
             onClick={onClose}
-            className="px-6 py-2.5 rounded-full bg-slate-900 hover:bg-slate-700
-                       text-white text-xs font-bold uppercase tracking-widest
-                       transition-colors focus:outline-none focus-visible:ring-2
-                       focus-visible:ring-offset-2 focus-visible:ring-slate-900"
+            className="inline-flex w-full cursor-pointer justify-center rounded-full bg-brand-900 px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-white shadow-lg hover:bg-brand-800 transition-all sm:w-auto"
           >
             Close
           </button>
@@ -413,17 +313,14 @@ function ResearchEmptyState() {
   return (
     <div className="py-20 text-center">
       <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mx-auto mb-5">
-        <svg
-          xmlns="http://www.w3.org/2000/svg" fill="none"
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
           viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
-          className="w-8 h-8 text-slate-400"
-        >
+          className="w-8 h-8 text-slate-400">
           <path strokeLinecap="round" strokeLinejoin="round"
             d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0
                0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9
                m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125
-               1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-          />
+               1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
         </svg>
       </div>
       <h3 className="font-serif text-2xl font-bold text-slate-900 mb-3">
@@ -440,13 +337,22 @@ function ResearchEmptyState() {
 // ─── Main Export ──────────────────────────────────────────────────────────────
 
 export default function Team() {
+  const { data, loading, error } = useTeamData();
   const [activeTab, setActiveTab] = useState<TabKey>('board');
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
   const openModal = useCallback((member: TeamMember) => setSelectedMember(member), []);
   const closeModal = useCallback(() => setSelectedMember(null), []);
 
-  const members = TEAM_DATA[activeTab];
+  // Derive active tab — default to first tab key once data loads,
+  // but only if current activeTab isn't already in the loaded tabs list.
+  const resolvedActiveTab: TabKey =
+    data?.tabs?.some((t) => t.key === activeTab)
+      ? activeTab
+      : (data?.tabs?.[0]?.key as TabKey) ?? 'board';
+
+  const tabs = data?.tabs ?? [];
+  const members = data?.members?.[resolvedActiveTab] ?? [];
 
   return (
     <section id="team" className="py-20 bg-white scroll-mt-20">
@@ -462,51 +368,60 @@ export default function Team() {
           </h2>
         </div>
 
-        {/* Tab bar */}
-        <div className="flex justify-center mb-12 px-2">
-          <div
-            role="tablist"
-            aria-label="Team categories"
-            className="flex items-center gap-1 bg-slate-100 border border-slate-200 
-                       rounded-full p-1 sm:p-1.5 overflow-x-auto max-w-full
-                       [scrollbar-width:none] [-ms-overflow-style:none]
-                       [&::-webkit-scrollbar]:hidden font-roboto"
-          >
-            {TABS.map((tab) => (
-              <button
-                key={tab.key}
-                role="tab"
-                aria-selected={activeTab === tab.key}
-                aria-controls={`panel-${tab.key}`}
-                id={`tab-${tab.key}`}
-                onClick={() => setActiveTab(tab.key)}
-                className={[
-                  'whitespace-nowrap px-3 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full cursor-pointer',
-                  'text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest',
-                  'transition-all duration-200 focus:outline-none',
-                  'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-1',
-                  activeTab === tab.key
-                    ? 'bg-white text-slate-900 shadow-md'
-                    : 'text-slate-500 hover:text-slate-800',
-                ].join(' ')}
-              >
-                {tab.label}
-              </button>
-            ))}
+        {/* Tab bar — shows skeleton while loading */}
+        {loading ? (
+          <div className="flex justify-center mb-12">
+            <div className="h-11 w-96 rounded-full bg-slate-100 animate-pulse" />
           </div>
-        </div>
+        ) : (
+          <div className="flex justify-center mb-12 px-2">
+            <div
+              role="tablist"
+              aria-label="Team categories"
+              className="flex items-center gap-1 bg-slate-100 border border-slate-200
+                         rounded-full p-1 sm:p-1.5 overflow-x-auto max-w-full
+                         [scrollbar-width:none] [-ms-overflow-style:none]
+                         [&::-webkit-scrollbar]:hidden font-roboto"
+            >
+              {tabs.map((tab) => (
+                <button
+                  key={tab.key}
+                  role="tab"
+                  aria-selected={resolvedActiveTab === tab.key}
+                  aria-controls={`panel-${tab.key}`}
+                  id={`tab-${tab.key}`}
+                  onClick={() => setActiveTab(tab.key as TabKey)}
+                  className={[
+                    'whitespace-nowrap px-3 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full cursor-pointer',
+                    'text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest',
+                    'transition-all duration-200 focus:outline-none',
+                    'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-1',
+                    resolvedActiveTab === tab.key
+                      ? 'bg-white text-slate-900 shadow-md'
+                      : 'text-slate-500 hover:text-slate-800',
+                  ].join(' ')}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Panels */}
-        {TABS.map((tab) => (
+        {loading && <GridSkeleton />}
+        {error && <ErrorState message={error} />}
+
+        {!loading && !error && tabs.map((tab) => (
           <div
             key={tab.key}
             id={`panel-${tab.key}`}
             role="tabpanel"
             aria-labelledby={`tab-${tab.key}`}
-            hidden={activeTab !== tab.key}
+            hidden={resolvedActiveTab !== tab.key}
           >
-            {activeTab === tab.key && (
-              tab.key === 'research' && members.length === 0
+            {resolvedActiveTab === tab.key && (
+              members.length === 0
                 ? <ResearchEmptyState />
                 : (
                   <div className="grid gap-4 sm:gap-5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
@@ -520,7 +435,6 @@ export default function Team() {
         ))}
       </div>
 
-      {/* Modal */}
       <MemberModal member={selectedMember} onClose={closeModal} />
     </section>
   );

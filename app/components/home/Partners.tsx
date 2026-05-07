@@ -77,7 +77,7 @@ const PartnersSpotlight = () => {
                         {displayPartners.map((partner, index) => (
                             <div
                                 key={index}
-                                className="flex-shrink-0 w-auto h-24 flex items-center justify-center p-2"
+                                className="shrink-0 w-auto h-24 flex items-center justify-center p-2"
                             >
                                 <img
                                     src={partner.img}

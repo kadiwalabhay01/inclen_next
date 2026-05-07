@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -12,39 +12,50 @@ interface Collaborator {
 
 type TabKey = 'national' | 'international';
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
+interface CollaboratorsData {
+  tabs: { key: TabKey; label: string }[];
+  collaborators: Record<TabKey, Collaborator[]>;
+}
 
-const COLLABORATORS: Record<TabKey, Collaborator[]> = {
-  international: [
-    { name: 'Johns Hopkins University', location: 'USA',    initial: 'JH' },
-    { name: 'McMaster University',       location: 'Canada', initial: 'MU' },
-    { name: 'McGill University',         location: 'Canada', initial: 'Mg' },
-    { name: 'Boston University',         location: 'USA',    initial: 'BU' },
-    { name: 'University of Tromsø',      location: 'Norway', initial: 'UT' },
-  ],
-  national: [
-    { name: 'AIIMS',            location: 'New Delhi',   initial: 'AI' },
-    { name: 'PHFI',             location: 'New Delhi',   initial: 'PH' },
-    { name: 'KGMU',             location: 'Lucknow',     initial: 'KG' },
-    { name: 'Jamia Hamdard',    location: 'New Delhi',   initial: 'JH' },
-    { name: 'IGNOU',            location: 'New Delhi',   initial: 'IG' },
-    { name: 'IIIT Delhi',       location: 'New Delhi',   initial: 'II' },
-    { name: 'AIIMS Bhubaneswar',location: 'Bhubaneswar', initial: 'AI' },
-    { name: 'KIMS Bhubaneswar', location: 'Bhubaneswar', initial: 'KI' },
-    { name: 'AIIMS',            location: 'Patna',       initial: 'AI' },
-    { name: 'AIIMS',            location: 'Madurai',     initial: 'AI' },
-    { name: 'ICMR',             location: 'New Delhi',   initial: 'IC' },
-    { name: 'PHFI',             location: 'New Delhi',   initial: 'PH' },
-    { name: 'INDEPTH',          location: 'Delhi',       initial: 'IN' },
-    { name: 'NII',              location: 'New Delhi',   initial: 'NI' },
-    { name: 'SRU',              location: 'Tamil Nadu',  initial: 'SR' },
-  ],
-};
+// ─── Data Source ──────────────────────────────────────────────────────────────
+//
+//  ✅ NOW    → fetches from public/data/collaborators-data.json
+//  🔜 FUTURE → swap this one line to your API URL:
+//              const DATA_URL = 'https://your-api.com/api/collaborators';
+//
+const DATA_URL = '/data/collaborators-data.json';
 
-const TABS: { key: TabKey; label: string }[] = [
-  { key: 'national',      label: 'National (India)' },
-  { key: 'international', label: 'International'    },
-];
+// ─── Custom Hook ──────────────────────────────────────────────────────────────
+
+function useCollaboratorsData() {
+  const [data, setData] = useState<CollaboratorsData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        setLoading(true);
+        setError(null);
+        const res = await fetch(DATA_URL);
+        if (!res.ok) throw new Error(`Failed to fetch collaborators data (${res.status})`);
+        const json: CollaboratorsData = await res.json();
+        if (!cancelled) setData(json);
+      } catch (err) {
+        if (!cancelled) setError(err instanceof Error ? err.message : 'Unknown error');
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    load();
+    return () => { cancelled = true; };
+  }, []);
+
+  return { data, loading, error };
+}
 
 // ─── CollaboratorCard ─────────────────────────────────────────────────────────
 
@@ -56,7 +67,6 @@ function CollaboratorCard({ item }: { item: Collaborator }) {
                  transition-all duration-300 text-center flex flex-col
                  items-center justify-center h-full"
     >
-      {/* Avatar */}
       <div
         className="w-14 h-14 sm:w-16 sm:h-16 mx-auto bg-white rounded-full shadow-sm
                    flex items-center justify-center mb-4 sm:mb-6
@@ -67,7 +77,6 @@ function CollaboratorCard({ item }: { item: Collaborator }) {
         </span>
       </div>
 
-      {/* Name */}
       <h4
         className="font-bold text-slate-900 text-xs sm:text-sm leading-tight
                    group-hover:text-accent-500 transition-colors mb-2 font-roboto"
@@ -75,7 +84,6 @@ function CollaboratorCard({ item }: { item: Collaborator }) {
         {item.name}
       </h4>
 
-      {/* Location badge */}
       <span
         className="inline-block px-2 py-0.5 bg-brand-100 text-brand-700 font-roboto
                    text-[9px] sm:text-[10px] font-bold uppercase tracking-widest rounded-full"
@@ -86,10 +94,51 @@ function CollaboratorCard({ item }: { item: Collaborator }) {
   );
 }
 
+// ─── Skeleton ─────────────────────────────────────────────────────────────────
+
+function GridSkeleton() {
+  return (
+    <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <div key={i} className="rounded-2xl bg-slate-100 animate-pulse h-36" />
+      ))}
+    </div>
+  );
+}
+
+// ─── Error State ──────────────────────────────────────────────────────────────
+
+function ErrorState({ message }: { message: string }) {
+  return (
+    <div className="py-16 text-center">
+      <div className="w-14 h-14 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          strokeWidth={1.5} stroke="currentColor" className="w-7 h-7 text-red-400">
+          <path strokeLinecap="round" strokeLinejoin="round"
+            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71
+               c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898
+               0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+        </svg>
+      </div>
+      <p className="text-slate-500 text-sm">{message}</p>
+    </div>
+  );
+}
+
 // ─── Main Export ──────────────────────────────────────────────────────────────
 
 export default function AcademicCollaborators() {
+  const { data, loading, error } = useCollaboratorsData();
   const [activeTab, setActiveTab] = useState<TabKey>('international');
+
+  const tabs = data?.tabs ?? [];
+
+  const resolvedActiveTab: TabKey =
+    tabs.some((t) => t.key === activeTab)
+      ? activeTab
+      : (tabs[0]?.key as TabKey) ?? 'international';
+
+  const items = data?.collaborators?.[resolvedActiveTab] ?? [];
 
   return (
     <section
@@ -100,7 +149,6 @@ export default function AcademicCollaborators() {
 
         {/* Header row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          {/* Title */}
           <div>
             <span className="text-accent-500 font-bold tracking-widest uppercase text-xs font-roboto">
               Global Network
@@ -110,54 +158,61 @@ export default function AcademicCollaborators() {
             </h2>
           </div>
 
-          {/* Tab switcher */}
+          {/* Tab switcher — skeleton while loading */}
           <div className="flex justify-center md:justify-end">
-            <div
-              role="tablist"
-              aria-label="Collaborator regions"
-              className="flex items-center gap-1 bg-slate-100 border border-slate-200 rounded-full p-1 overflow-x-auto
-                         [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-
-              {TABS.map((tab) => (
-                <button
-                  key={tab.key}
-                  role="tab"
-                  id={`collab-tab-${tab.key}`}
-                  aria-selected={activeTab === tab.key}
-                  aria-controls={`collab-panel-${tab.key}`}
-                  onClick={() => setActiveTab(tab.key)}
-                  className={[
-                    'whitespace-nowrap px-5 sm:px-6 py-2 rounded-full',
-                    'text-[10px] sm:text-xs font-bold uppercase tracking-widest',
-                    'transition-all duration-200 focus:outline-none',
-                    'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-1 font-roboto',
-                    activeTab === tab.key
-                      ? 'bg-white text-slate-900 shadow-sm'
-                      : 'text-slate-500 hover:text-slate-800',
-                  ].join(' ')}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+            {loading ? (
+              <div className="h-10 w-56 rounded-full bg-slate-100 animate-pulse" />
+            ) : (
+              <div
+                role="tablist"
+                aria-label="Collaborator regions"
+                className="flex items-center gap-1 bg-slate-100 border border-slate-200
+                           rounded-full p-1 overflow-x-auto
+                           [scrollbar-width:none] [-ms-overflow-style:none]
+                           [&::-webkit-scrollbar]:hidden"
+              >
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.key}
+                    role="tab"
+                    id={`collab-tab-${tab.key}`}
+                    aria-selected={resolvedActiveTab === tab.key}
+                    aria-controls={`collab-panel-${tab.key}`}
+                    onClick={() => setActiveTab(tab.key)}
+                    className={[
+                      'whitespace-nowrap px-5 sm:px-6 py-2 rounded-full',
+                      'text-[10px] sm:text-xs font-bold uppercase tracking-widest',
+                      'transition-all duration-200 focus:outline-none font-roboto',
+                      'focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-1',
+                      resolvedActiveTab === tab.key
+                        ? 'bg-white text-slate-900 shadow-sm'
+                        : 'text-slate-500 hover:text-slate-800',
+                    ].join(' ')}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
         {/* Panels */}
         <div className="min-h-[220px]">
-          {TABS.map((tab) => (
+          {loading && <GridSkeleton />}
+          {error && <ErrorState message={error} />}
+
+          {!loading && !error && tabs.map((tab) => (
             <div
               key={tab.key}
               id={`collab-panel-${tab.key}`}
               role="tabpanel"
               aria-labelledby={`collab-tab-${tab.key}`}
-              hidden={activeTab !== tab.key}
+              hidden={resolvedActiveTab !== tab.key}
             >
-              {activeTab === tab.key && (
-                <div
-                  className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
-                >
-                  {COLLABORATORS[tab.key].map((item, idx) => (
+              {resolvedActiveTab === tab.key && (
+                <div className="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                  {items.map((item, idx) => (
                     <CollaboratorCard key={`${item.name}-${item.location}-${idx}`} item={item} />
                   ))}
                 </div>

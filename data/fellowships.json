@@ -1,0 +1,24 @@
+[
+  {
+    "id": "2",
+    "title": "Dissertation Internship",
+    "subtitle": "hello Internship",
+    "description": "<p>Supervised research aligned with IIGH's priority areas</p><ol><li>Option to select a research topic within IIGH's thematic areas</li><li>Topics outside IIGH's core focus may be considered with prior approval</li><li>Exposure to applied research in global and public health contexts</li></ol>",
+    "duration": "4 weeks to 12 weeks",
+    "who_apply": "Graduate, postgraduate, and doctoral students",
+    "image": "/images/research_projects/research_projects.jpg",
+    "created_at": "2026-03-31 07:18:38",
+    "short_description": "this is short description"
+  },
+  {
+    "id": "1",
+    "title": "test",
+    "subtitle": "Get your policy Quickly",
+    "description": "<p>Get your policy QuicklyGet your policy QuicklyGet your policy QuicklyGet your policy Quickly</p>",
+    "duration": "5 months",
+    "who_apply": "PHP Developer",
+    "image": "/images/research_projects/research_projects.jpg",
+    "created_at": "2026-03-31 07:09:47",
+    "short_description": ""
+  }
+]

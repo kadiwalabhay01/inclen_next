@@ -1,0 +1,86 @@
+[
+  {
+    "id": "7",
+    "title": "test",
+    "keyword": "asdas",
+    "slug": "test",
+    "content": "<p>sdfsdfsd sdfsf sefdsdfsdf</p>",
+    "location": "USA",
+    "employment_type": "Part Time",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/1774937586-Hero.png",
+    "pdf": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/pdf/1775566345-sample.pdf",
+    "created_at": "2026-03-31 06:13:33"
+  },
+  {
+    "id": "6",
+    "title": "helo",
+    "keyword": null,
+    "slug": "helo",
+    "content": "<p>this is testing</p>",
+    "location": "Noida",
+    "employment_type": "Contractual",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/1774878091-vivan1.png",
+    "pdf": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/pdf/1775633921-sample.pdf",
+    "created_at": "2026-03-30 13:43:26"
+  },
+  {
+    "id": "5",
+    "title": "java",
+    "keyword": null,
+    "slug": "java",
+    "content": "<p>this is testing</p>",
+    "location": "Chennai",
+    "employment_type": "Temporary",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/1774878091-vivan1.png",
+    "pdf": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/pdf/1775634131-test.pdf",
+    "created_at": "2026-03-30 13:43:26"
+  },
+  {
+    "id": "4",
+    "title": "angular",
+    "keyword": null,
+    "slug": "angular",
+    "content": "<p>this is testing</p>",
+    "location": "Mumbai",
+    "employment_type": "Part Time",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/1774878091-vivan1.png",
+    "pdf": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/pdf/1775634045-sample.pdf",
+    "created_at": "2026-03-30 13:43:26"
+  },
+  {
+    "id": "3",
+    "title": "this is demo title",
+    "keyword": null,
+    "slug": "this-is-demo-title",
+    "content": "<p>this is testing</p>",
+    "location": "Pune",
+    "employment_type": "Internship",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/1774878091-vivan1.png",
+    "pdf": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/pdf/1775634116-sample.pdf",
+    "created_at": "2026-03-30 13:43:26"
+  },
+  {
+    "id": "2",
+    "title": "this is demo title",
+    "keyword": null,
+    "slug": "this-is-demo-title",
+    "content": "<p>this is testing</p>",
+    "location": "Delhi",
+    "employment_type": "Full Time",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/1774878091-vivan1.png",
+    "pdf": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/pdf/1774932117-IAPCON_receipt.pdf",
+    "created_at": "2026-03-30 13:43:26"
+  },
+  {
+    "id": "1",
+    "title": "this is demo title",
+    "keyword": "php",
+    "slug": "this-is-demo-title",
+    "content": "<p>this is testing</p>",
+    "location": "Meerut",
+    "employment_type": "Freelance",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/1774878091-vivan1.png",
+    "pdf": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/openings/pdf/1775634094-test.pdf",
+    "created_at": "2026-03-30 13:43:26"
+  }
+]
