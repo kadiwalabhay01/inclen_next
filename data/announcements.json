@@ -1,0 +1,35 @@
+[
+  {
+    "id": "3",
+    "title": "this is announcement",
+    "slug": "this-is-announcement",
+    "content": "<p>this is announcement</p>",
+    "author": "Prince",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/announcement/1775569058-5968332.png",
+    "created_at": "2026-03-30 15:55:34",
+    "updated_at": "2026-04-07 19:07:41",
+    "purpose": "Event"
+  },
+  {
+    "id": "2",
+    "title": "Testing this now",
+    "slug": "testing-this-now",
+    "content": "<p>Testing this now</p>",
+    "author": "Prince",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/announcement/1771302954-image_750x_6900fdf8704d7.jpg",
+    "created_at": "2026-02-17 10:05:57",
+    "updated_at": "0000-00-00 00:00:00",
+    "purpose": "Event"
+  },
+  {
+    "id": "1",
+    "title": "dsfgsdfsdf",
+    "slug": "dsfgsdfsdf",
+    "content": "<p>dsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdfdsfgsdfsdf</p>",
+    "author": "Prince",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/announcement/1771302887-1734932293.jpg",
+    "created_at": "2026-02-16 19:16:16",
+    "updated_at": "2026-02-17 10:04:50",
+    "purpose": "Academic Programs"
+  }
+]

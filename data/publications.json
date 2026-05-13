@@ -1,0 +1,28 @@
+[
+  {
+    "id": "4",
+    "title": "Multicenter Studies: Relevance, Design and Implementation",
+    "slug": "",
+    "year": "2022",
+    "journal": "PubMed",
+    "authors": "Manoja Kumar Das",
+    "abstract": "Multicenter studies are essential in clinical and public health research with several advantages compared to single-center studies. Multicenter studies are attractive and advantageous, allowing quicker recruitment, diverse population coverage and increased generalizability. However, these studies often suffer from methodological, implementation and statistical challenges that can compromise the validity of the study. To meet the technical and interpretative integrity, a multicenter study must be conducted with sound study design, uniform implementation methodology, assured standardization, high-quality data and appropriate statistical considerations. A systematic site selection, rigorous study protocols, stringent quality assurance measures and appropriate analytical approach are indispensable to ensure high internal validity and minimize inter-site variability. For effective implementation of multicenter study, a well-organized coordination center and functional governance mechanism are critical. Transparent and effective network communication among the investigators with cultural sensitivities assists in building productive collaboration. This manuscript summarizes the design, organization, implementation and governance aspects of multicenter studies.",
+    "suggested_citation": "The impact of data quality monitoring of a multicenter prospective registry of cardiac implantable electronic devices",
+    "cover_image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/publications/covers/1777977030-2148962490.jpg",
+    "pdf_url": "https://file-examples.com/storage/fe59e497a26a04197981365/2017/10/file-sample_150kB.pdf",
+    "created_at": "2026-05-05 10:30:33"
+  },
+  {
+    "id": "3",
+    "title": "An Introduction to Qualitative and Mixed Methods Study Designs in Health Research",
+    "slug": "",
+    "year": "2022",
+    "journal": "PubMed",
+    "authors": "Manoja Kumar Das",
+    "abstract": "With the recognition of different population behavior and relevance of socio-cultural factors in health, health services and public health program contexts, qualitative research is increasingly being used in health research, including clinical trials. Qualitative research follows an inductive framework to explore and gain an in-depth understanding of the phenomena, especially why and how aspects, through techniques including interviews, focus groups and observations. It analyzes the textual data collected following one of the common analysis approaches: grounded theory, phenomenology, ethnography or participatory action research. Despite the divergence in principles, mixed methods research designs systematically combine the quantitative and qualitative methods for a comprehensive understanding on the issue. The commonly used mixed methods designs variably combine the purpose, priority, sequence, embedding and data integration. Mixed methods analysis requires strategic synthesis of the results to gain comprehensive knowledge for appropriate clinical or public health action.",
+    "suggested_citation": "Structural Determinants of Health-Related Quality of Life in Internal Medicine Residents: An Ethnographic Study",
+    "cover_image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/publications/covers/1777976847-118458.jpg",
+    "pdf_url": "https://file-examples.com/storage/fe59e497a26a04197981365/2017/10/file-sample_150kB.pdf",
+    "created_at": "2026-05-05 10:27:41"
+  }
+]

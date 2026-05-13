@@ -1,0 +1,18 @@
+[
+  {
+    "id": "5",
+    "title": "this is asdasda",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/headings/1774934230-vivan1.png",
+    "content": "<p>this is sdfs</p>",
+    "heading_type": "Surveillance",
+    "created_at": "2026-03-31 05:16:51"
+  },
+  {
+    "id": "3",
+    "title": "Viksit Bharat 2047 Policy Dialogue",
+    "image": "https://pub-0a4b820e73c14605a159d60ec5f71130.r2.dev/admin/headings/1774872037-Lemon_Tree_Premier2.jpg",
+    "content": "<p>INCLEN members are scheduled to participate in the Reimagining Indias Health System Towards Viksit Bharat 2047 dialogue on 6 February 2026 at the Goa Institute of Management. This event focuses on translating research into actionable insights for a citizen-centred health system.</p>",
+    "heading_type": "News",
+    "created_at": "2026-03-30 11:53:57"
+  }
+]
